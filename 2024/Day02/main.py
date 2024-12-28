@@ -1,4 +1,4 @@
-from Day02.day02 import RedNoseReactor
+from Day02.day02 import RedNoseReactorReport
 
 
 def get_reports(filename):
@@ -14,13 +14,19 @@ def run_input_a():
     reports = get_reports('input_a.txt')
     safe_count = 0
     for report in reports:
-        if RedNoseReactor().is_safe_report(report):
+        if RedNoseReactorReport(report).is_safe_report():
             safe_count += 1
 
-    print(f'ReadNoseReactor reports that are safe: {safe_count}')
+    print(f'ReadNoseReactorReports that are safe: {safe_count}')
 
 def run_input_b():
-    pass
+    reports = get_reports('input_b.txt')
+    safe_count = 0
+    for report in reports:
+        if RedNoseReactorReport(report).is_safe_report_with_dampener():
+            safe_count += 1
+
+    print(f'ReadNoseReactorReports with dampener that are safe: {safe_count}')
 
 
 if __name__ == '__main__':
