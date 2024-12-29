@@ -4,15 +4,12 @@ from Day02.day02_enums import ReactorState
 class RedNoseReactorReport:
     _report: list[int]
 
-    def __init__(self , report):
-        self._report = report
+    def __init__(self, report):
+        self._originalReport = report
+        self._report = report.copy()
         self._current_reactor_state = ReactorState.START
-        self._problem_count = 0
-
 
     def is_safe_report(self) -> bool:
-        self._current_reactor_state = ReactorState.START
-
         unsafe_level_index = self._find_first_unsafe_level_index()
 
         if unsafe_level_index is None:
@@ -21,17 +18,23 @@ class RedNoseReactorReport:
         return False
 
     def is_safe_report_with_dampener(self) -> bool:
-        unsafe_level_index = self._find_first_unsafe_level_index()
-
-        if unsafe_level_index is None:
+        if self.is_safe_report():
             return True
 
-        self._report.pop(unsafe_level_index)
-        return self.is_safe_report()
+        for i in range(len(self._originalReport)):
+            self._report = self._originalReport.copy()
+            self._report.pop(i)
+
+            if self.is_safe_report():
+                return True
+
+        return False
 
     def _find_first_unsafe_level_index(self):
         if len(self._report) < 1:
             return None
+
+        self._current_reactor_state = ReactorState.START
 
         for i in range(len(self._report) - 1):
             current_item = self._report[i]
@@ -54,7 +57,6 @@ class RedNoseReactorReport:
             return True
 
         return False
-
 
     @staticmethod
     def _is_safe_item_difference(current_item, next_item):
@@ -88,5 +90,3 @@ class RedNoseReactorReport:
             return ReactorState.NEGATIVE
         else:
             return ReactorState.NEUTRAL
-
-
