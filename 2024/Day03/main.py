@@ -16,7 +16,10 @@ def run_input_a():
 
 
 def run_input_b():
-    pass
+
+    x = CorruptedMemoryScan("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))")
+    # x = CorruptedMemoryScan(memory_values)
+    return x.salvage_memory()
 
 
 if __name__ == '__main__':
