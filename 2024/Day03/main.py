@@ -12,14 +12,14 @@ def run_input_a():
     memory_values = get_corrupted_memory_values('input_a.txt')
     # x = CorruptedMemoryScan('xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))')
     x = CorruptedMemoryScan(memory_values)
-    return x.salvage_memory()
+    return x.get_totals()
 
 
 def run_input_b():
-
-    x = CorruptedMemoryScan("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))")
-    # x = CorruptedMemoryScan(memory_values)
-    return x.salvage_memory()
+    memory_values = get_corrupted_memory_values('input_b.txt')
+    # x = CorruptedMemoryScan("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))")
+    x = CorruptedMemoryScan(memory_values)
+    return x.get_totals_with_conditionals()
 
 
 if __name__ == '__main__':
