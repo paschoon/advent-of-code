@@ -31,11 +31,11 @@ def a_solve_core(rotate_instruction: str, current_location: int) -> int:
 
 def b_solve_core(rotate_instruction: str, current_location: int):
     direction, distance = parse(rotate_instruction)
-    number_line_loc = current_location + distance
+    number_line_loc: int = current_location + distance
 
     dial_size: int = 100
     times_past_zero: int = abs(int(number_line_loc / dial_size))
-    if number_line_loc <= 0:
+    if current_location > 0 and number_line_loc <= 0:
         times_past_zero += 1
 
     dial_location = number_line_loc % dial_size
@@ -49,8 +49,8 @@ def b_solve(solve_list: list[str]) -> int:
 
     for rotation_instruct in solve_list:
         current_loc, times_past_zero = b_solve_core(rotation_instruct, current_loc)
-        print(current_loc)
-        print(times_past_zero)
+        # print(current_loc)
+        # print(times_past_zero)
         pwd += times_past_zero
 
     return pwd
